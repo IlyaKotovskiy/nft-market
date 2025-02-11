@@ -1,0 +1,20 @@
+:root {
+  --dark-theme: #050B1C,
+  --yellow: #FFD438,
+  --gradient-yellow: linear-gradient(90deg, rgba(255,205,24,1) 0%, rgba(255,218,85,1) 100%),
+  --white: #FFF,
+  --dark: #848A9C,
+  --dark2: #464A59,
+  --dark3: #0E1424, 
+  --dark4: #1C2533, 
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 5510px;
+}
