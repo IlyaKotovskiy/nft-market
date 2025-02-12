@@ -1,20 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-  --dark-theme: #050B1C,
-  --yellow: #FFD438,
-  --gradient-yellow: linear-gradient(90deg, rgba(255,205,24,1) 0%, rgba(255,218,85,1) 100%),
-  --white: #FFF,
-  --dark: #848A9C,
-  --dark2: #464A59,
-  --dark3: #0E1424, 
-  --dark4: #1C2533, 
+  --transition: .2s ease-in-out;
+  --color-white: #FFF;
+  --color-yellow: #FFD438;
+  --color-gradient-yellow: linear-gradient(90deg, rgba(255,205,24,1) 0%, rgba(255,218,85,1) 100%);
+  --color-gray-light: #9398A7;
+  --color-gray-medium: #848A9C;
+  --color-gray-dark: #464A59;
+  --color-blue-gray: #1C2533;
+  --color-navy-light: #0E1424;
+  --color-navy-medium: #111826;
+  --color-navy-dark: #050B1C;
+  --color-theme-dark: #050B1C;
 }
+
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", sans-serif;
+}
+
+h1, h2 {
+  font-weight: 600;
+}
+
+h3, h4, h5, h6 {
+  font-weight: 500;
 }
 
 body {
-  height: 5510px;
+  background-color: var(--color-theme-dark);
+}
+
+p {
+  color: var(--color-gray-medium);
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input {
+  border: none;
+  outline: none;
 }

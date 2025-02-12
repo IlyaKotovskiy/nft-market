@@ -1,0 +1,27 @@
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    svg {
+        transition: filter var(--transition);
+    }
+
+    .logoText {
+        color: var(--color-white);
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 35px;
+        transform: translateX(10px);
+        transition: transform var(--transition);
+    }  
+
+    &:hover {
+        svg {
+            filter: drop-shadow(0 0 6px var(--color-yellow));
+        }
+        .logoText {
+            transform: translateX(12px);
+        }
+    }
+}

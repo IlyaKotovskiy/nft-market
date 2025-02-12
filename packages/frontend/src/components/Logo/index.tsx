@@ -1,10 +1,11 @@
+import s from './Logo.module.scss';
 import LogoIcon from '../../icons/logo.svg?react';
 
 export const Logo = () => {
     return (
-        <div>
+        <a className={s.logo}>
             <LogoIcon />
-            <h1>Logo</h1>
-        </div>
+            <p className={s.logoText}>OpenLake</p>
+        </a>
     )
 }

@@ -1,7 +1,36 @@
+import s from './Header.module.scss';
+import SearchIcon from '../../icons/search.svg?react';
 import { Logo } from "../Logo"
+import { Button } from "../UI/Button"
+import { Container } from '../Container';
 
 export const Header = () => {
+    const navRoutes = {
+        stats: '/stats',
+        resources: '/resources',
+        create: '/create'
+    }
+
     return (
-        <Logo />
+        <header>
+            <Container>
+                <div className={s.wrapper}>
+                    <Logo />
+                    <Button title="Explore" theme="yellow" size="small" type="headerBtn" />
+                    <form method="get">
+                        <input type="text" name="search" placeholder="Search" autoComplete="off" />
+                        <button type="submit">
+                            <SearchIcon />
+                        </button>
+                    </form>
+                    <nav>
+                        {Object.entries(navRoutes).map(([label, path]) => (
+                            <a key={label} href={path}>{label.toUpperCase()}</a>
+                        ))}
+                    </nav>
+                    <Button title="Connect" theme="dark" size="small" type="connectBtn" />
+                </div>
+            </Container>
+        </header>
     )
 }
