@@ -17,7 +17,7 @@ export const Header: React.FC = (): React.JSX.Element => {
                 <div className={s.wrapper}>
                     <Logo />
                     <Button title="Explore" theme="yellow" size="small" type="headerBtn" />
-                    <form method="get">
+                    <form className={s.form}>
                         <input type="text" name="search" placeholder="Search" autoComplete="off" />
                         <button type="submit">
                             <SearchIcon />

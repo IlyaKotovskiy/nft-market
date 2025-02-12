@@ -10,6 +10,7 @@
 .yellow {
     background: var(--color-gradient-yellow);
     border: 1px solid transparent;
+    font-weight: 500;
 
     &:hover {
         box-shadow: 0 0 15px rgba(255, 205, 24, 0.6);

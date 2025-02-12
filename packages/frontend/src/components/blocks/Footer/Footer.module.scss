@@ -1,0 +1,134 @@
+footer {
+    padding: 30px 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+
+.leftSide {
+    // ***
+    width: 430px;
+    // ***
+
+
+}
+
+.logo {
+    margin-bottom: 60px;
+}
+
+.stayForm {
+    h4 {
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 29px;
+    }
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    margin-bottom: 87px;
+
+    label {
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        svg {
+            position: absolute;
+            left: 22px;
+        }
+
+        input {
+            width: 100%;
+            border: 2px solid var(--color-blue-gray);
+            border-right: 0;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            background-color: var(--color-navy-medium);
+            color: var(--color-white);
+            font-size: 16px;
+            padding: 20px 0 20px 50px;
+            transition: border-color var(--transition), box-shadow (var(--transition));
+
+            &::placeholder {
+                color: var(--color-gray-medium);
+            }
+
+            &:focus-within {
+                border: 2px solid var(--color-gray-medium);
+                border-right: 0;
+                box-shadow: 0 0 15px var(--color-gray-medium);
+            }
+        
+            &:hover:not(:focus-within) {
+                border-color: var(--color-gray-dark);
+            }
+        }
+    }
+
+    button {
+        border-radius: unset;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        padding: 0 30px;
+    }
+}
+
+.links {
+    display: flex;
+    gap: 10px;
+}
+
+.link {
+    border: 2px solid var(--color-blue-gray);
+    border-radius: 12px;
+    background-color: var(--color-navy-medium);
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color var(--transition);
+
+    &:hover {
+        border-color: var(--color-gray-dark);
+    }
+}
+
+.rightSide {
+    display: flex;
+    gap: 180px;
+}
+
+.chapter {
+    h4 {
+        margin-bottom: 30px;
+    }
+}
+
+.chapterList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--color-gray-medium);
+}
+
+.legal {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+    border-top: 2px solid var(--color-blue-gray);
+}
+
+.legalLinks {
+    display: flex;
+    gap: 60px;
+}
