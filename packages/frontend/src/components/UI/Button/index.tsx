@@ -1,22 +1,10 @@
 import s from './Button.module.scss';
+import { IButton, TTypeButton } from '../../../types/button';
 import ExploreIcon from '../../../icons/explore_icon.svg?react';
 import ConnectIcon from '../../../icons/connect_wallet_icon.svg?react';
-import { JSX } from 'react';
 
-type TThemeButton = "yellow" | "dark";
-type TSizeButton = "small" | "large";
-type TTypeButton = "headerBtn" | "connectBtn";
-
-interface IButton {
-    title: string
-    theme: TThemeButton
-    size: TSizeButton
-    type?: TTypeButton
-    onClick?: () => void
-}
-
-export const Button = ({ title, theme, size, type, ...otherProps } :IButton) => {
-    const iconMap: Record<TTypeButton, JSX.Element> = {
+export const Button: React.FC<IButton> = ({ title, theme, size, type, ...otherProps } :IButton): React.JSX.Element => {
+    const iconMap: Record<TTypeButton, React.JSX.Element> = {
         headerBtn: <ExploreIcon />,
         connectBtn: <ConnectIcon />
     }

@@ -1,9 +1,9 @@
-import { Header } from './components/Header'
+import { Header } from './components/blocks/Header'
 
-function App() {
+export const App: React.FC = (): React.JSX.Element => {
   return (
-    <Header />
+    <>
+      <Header />
+    </>
   )
 }
-
-export default App

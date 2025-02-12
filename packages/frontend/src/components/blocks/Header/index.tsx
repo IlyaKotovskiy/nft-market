@@ -1,10 +1,10 @@
 import s from './Header.module.scss';
-import SearchIcon from '../../icons/search.svg?react';
-import { Logo } from "../Logo"
-import { Button } from "../UI/Button"
-import { Container } from '../Container';
+import SearchIcon from '../../../icons/search.svg?react';
+import { Logo } from "../../Logo"
+import { Button } from "../../UI/Button"
+import { Container } from '../../Container';
 
-export const Header = () => {
+export const Header: React.FC = (): React.JSX.Element => {
     const navRoutes = {
         stats: '/stats',
         resources: '/resources',
