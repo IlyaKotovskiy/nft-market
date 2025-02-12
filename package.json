@@ -11,12 +11,14 @@
     "dev:server": "lerna run dev --scope=backend",
     "lint": "lerna run lint",
     "format": "lerna run format",
-    "preview": "lerna run preview"
+    "preview": "lerna run preview",
+    "generate:component": "node generateComponent.js"
   },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^8.1.9"
+    "lerna": "^8.1.9",
+    "ora": "^8.2.0"
   }
 }
