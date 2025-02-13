@@ -119,6 +119,13 @@ footer {
     flex-direction: column;
     gap: 10px;
     color: var(--color-gray-medium);
+
+    li {
+        width: max-content;
+        &:hover {
+            color: var(--color-white);
+        }
+    }
 }
 
 .legal {
