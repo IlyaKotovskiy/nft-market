@@ -1,5 +1,5 @@
 import s from './Logo.module.scss';
-import LogoIcon from '../../icons/logo.svg?react';
+import LogoIcon from '@/icons/logo.svg?react';
 
 export const Logo: React.FC = (): React.JSX.Element => {
     return (

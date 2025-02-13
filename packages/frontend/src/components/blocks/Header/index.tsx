@@ -1,8 +1,8 @@
 import s from './Header.module.scss';
-import SearchIcon from '../../../icons/search.svg?react';
-import { Logo } from "../../Logo"
-import { Button } from "../../UI/Button"
-import { Container } from '../../Container';
+import SearchIcon from '@/icons/search.svg?react';
+import { Logo } from '@/components/Logo';
+import { Button } from '@/components/UI/Button';
+import { Container } from '@/components/Container';
 
 export const Header: React.FC = (): React.JSX.Element => {
     const navRoutes = {

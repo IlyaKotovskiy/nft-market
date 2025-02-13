@@ -1,4 +1,4 @@
-import { IFooterLink, IFooterRoute, QueryParam } from "../types/footer";
+import { IFooterLink, IFooterRoute, QueryParam } from "@/types/footer";
 
 export const links: IFooterLink[] = [
     { id: 1, name: 'telegram', path: '/' },
