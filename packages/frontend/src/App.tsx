@@ -1,11 +1,10 @@
-import { Footer } from './components/blocks/Footer'
-import { Header } from './components/blocks/Header'
+import { Layout } from './components/Layout'
+import { AppRouter } from './router'
 
 export const App: React.FC = (): React.JSX.Element => {
   return (
-    <>
-      <Header />
-      <Footer />
-    </>
+    <Layout>
+      <AppRouter />
+    </Layout>
   )
 }
