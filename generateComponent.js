@@ -1,5 +1,5 @@
 // Вызывается командой: yarn generate:component your_path your_component_name
-// Дефолтный путь создания компонента: *root_directory*/packages/frontend/src/components
+// Дефолтный путь создания компонента: *root_directory*/packages/frontend/src/
 
 // Пришлось задействовать IIFE так, как используется динамический импорт библиотеки Ora, которая является ES-модулем
 
@@ -16,7 +16,7 @@
         process.exit(1);
     }
 
-    const componentDir = path.join(__dirname, "packages/frontend/src/components", componentPath, componentName);
+    const componentDir = path.join(__dirname, "packages/frontend/src/", componentPath, componentName);
     const componentFile = path.join(componentDir, "index.tsx");
     const stylesFile = path.join(componentDir, `${componentName}.module.scss`);
     const componentTemplate = `import s from './${componentName}.module.scss';
