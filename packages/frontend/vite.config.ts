@@ -21,6 +21,7 @@ export default defineConfig({
       '@/pages': path.resolve(__dirname, './src/pages'),
       '@/types': path.resolve(__dirname, './src/types'),
       '@/icons': path.resolve(__dirname, './src/icons'),
+      '@/mocks': path.resolve(__dirname, './src/mocks'),
     }
   }
 })

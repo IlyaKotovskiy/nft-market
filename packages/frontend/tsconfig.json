@@ -24,6 +24,7 @@
       "@/pages/*": ["pages/*"],
       "@/types/*": ["types/*"],
       "@/icons/*": ["icons/*"],
+      "@/mocks/*": ["mocks/*"],
     }
   }
 }
