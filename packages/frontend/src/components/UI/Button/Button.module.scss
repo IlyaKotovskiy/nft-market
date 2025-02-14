@@ -37,6 +37,16 @@
     }
 }
 
+.dark-secondary {
+    background-color: var(--color-navy-dark);
+    color: var(--color-white);
+    transition: letter-spacing var(--transition);
+
+    &:hover {
+        letter-spacing: 3.2px;
+    }
+}
+
 .small {
     display: flex;
     justify-content: center;
