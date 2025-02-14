@@ -84,3 +84,7 @@ input {
 ul, li {
   list-style: none;
 }
+
+img {
+  display: block;
+}
