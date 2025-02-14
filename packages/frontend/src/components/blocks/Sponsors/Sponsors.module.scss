@@ -1,0 +1,16 @@
+.section {
+    background-color: var(--color-navy-light);
+    margin-bottom: var(--section-margin-bottom);
+}
+
+.sponsors {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 55px 0;
+
+    div {
+        display: flex;
+        align-items: center;
+    }
+}
