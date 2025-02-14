@@ -2,6 +2,7 @@
 
 :root {
   --transition: .2s ease-in-out;
+
   --color-white: #FFF;
   --color-yellow: #FFD438;
   --color-gradient-yellow: linear-gradient(90deg, rgba(255,205,24,1) 0%, rgba(255,218,85,1) 100%);
@@ -13,6 +14,8 @@
   --color-navy-medium: #111826;
   --color-navy-dark: #050B1C;
   --color-theme-dark: #050B1C;
+
+  --section-margin-bottom: 70px;
 }
 
 
