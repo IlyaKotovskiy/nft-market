@@ -25,6 +25,13 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
+  color: var(--color-white);
+}
+
+h1 {
+  font-size: 58px;
+  line-height: 66px;
+  filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.4));
 }
 
 h1, h2 {
@@ -32,7 +39,6 @@ h1, h2 {
 }
 
 h3, h4, h5, h6 {
-  color: var(--color-white);
   font-weight: 500;
 }
 
