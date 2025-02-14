@@ -29,12 +29,6 @@ export enum QueryParam {
     GRANTS = "grants"
 }
 
-export interface IFooterLink {
-    id: number,
-    name: string,
-    path: string
-}
-
 export interface IChapterRoute {
     label: string
     queryParam: QueryParam

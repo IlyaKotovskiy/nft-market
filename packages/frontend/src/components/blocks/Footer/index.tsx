@@ -2,21 +2,11 @@ import s from './Footer.module.scss';
 import { Container } from '@/components/Container';
 import { Logo } from '@/components/Logo';
 import { Button } from '@/components/UI/Button';
-import { footRoutes, links } from '@/constants/footer';
+import { footRoutes } from '@/constants/footer';
 import FormIcon from '@/icons/footer/email.svg?react';
-import TelegramIcon from '@/icons/footer/tg.svg?react';
-import DiscordIcon from '@/icons/footer/ds.svg?react';
-import TwitterIcon from '@/icons/footer/tw.svg?react';
-import InstagramIcon from '@/icons/footer/inst.svg?react';
+import { MediaLinks } from '@/components/MediaLinks';
 
 export const Footer: React.FC = (): React.JSX.Element => {
-    const iconsMap: Record<string, React.JSX.Element> = {
-        telegram: <TelegramIcon />,
-        discord: <DiscordIcon />,
-        twitter: <TwitterIcon />,
-        instagram: <InstagramIcon />
-    }
-    
     return (
         <footer>
             <Container>
@@ -36,13 +26,7 @@ export const Footer: React.FC = (): React.JSX.Element => {
                                 <Button theme="yellow" title="Send" size="large" />
                             </form>
                         </div>
-                        <div className={s.links}>
-                            {links.map(link => (
-                                <a key={link.id} href={link.path} className={s.link}>
-                                    {iconsMap[link.name]}
-                                </a>
-                            ))}
-                        </div>
+                        <MediaLinks theme="dark" />
                     </div>
                     <div className={s.rightSide}>
                         {footRoutes.map(section => (
