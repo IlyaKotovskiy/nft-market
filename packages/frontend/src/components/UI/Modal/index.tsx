@@ -2,18 +2,11 @@ import s from './Modal.module.scss';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-
-interface IModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    title?: string;
-    children: React.ReactNode;
-    footer?: React.ReactNode;
-}
+import { IModalProps } from '@/types/modal';
 
 export const Modal: React.FC<IModalProps> = ({ isOpen, onClose, title, children, footer }): React.JSX.Element => {
-    const [isVisible, setIsVisible] = useState(isOpen);
-    const body = document.body;
+    const [isVisible, setIsVisible] = useState<boolean>(isOpen);
+    const body: HTMLElement = document.body;    
 
     const handleClose = () => {
         setIsVisible(false)
