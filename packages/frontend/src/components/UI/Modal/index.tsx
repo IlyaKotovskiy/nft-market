@@ -1,23 +1,25 @@
 import s from './Modal.module.scss';
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IModalProps } from '@/types/modal';
 
 export const Modal: React.FC<IModalProps> = memo(({ isOpen, onClose, title, children, footer }): React.JSX.Element => {
+    const [shouldRender, setShouldRender] = useState(isOpen);
     const body = document.body;    
 
     useEffect(() => {
         if (isOpen) {
+            setShouldRender(true)
             body.style.overflow = "hidden";
-        }
-
-        return () => {
+        } else {
+            setTimeout(() => setShouldRender(false), 200)
             body.style.overflow = "hidden auto";
-        };
+        }
     }, [isOpen]);
 
-    console.log("render");
+    // Отложенный рендеринг
+    if (!shouldRender) return null;
 
     return createPortal(
         <AnimatePresence mode="wait" onExitComplete={onClose}>
