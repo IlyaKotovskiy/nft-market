@@ -3,7 +3,7 @@ import SearchIcon from '@/icons/search.svg?react';
 import { Logo } from '@/components/Logo';
 import { Button } from '@/components/UI/Button';
 import { Container } from '@/components/Container';
-import { Modal } from '@/components/Modal';
+import { Modal } from '@/components/UI/Modal';
 import { useModal } from '@/hooks/useModal';
 
 export const Header: React.FC = (): React.JSX.Element => {
