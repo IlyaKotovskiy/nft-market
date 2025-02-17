@@ -2,6 +2,7 @@ import s from './NotFoundPage.module.scss';
 import { Container } from '@/components/Container';
 import { Button } from '@/components/UI/Button';
 import { useNavigate } from "@/router";
+import { ROUTES } from '@/constants/routes';
 import NotFoundIcon from "@/icons/404.svg?react";
 
 export const NotFoundPage: React.FC = (): React.JSX.Element => {
@@ -17,7 +18,7 @@ export const NotFoundPage: React.FC = (): React.JSX.Element => {
                         <p>It looks like you've wandered into the wrong place.</p>
                         <div className={s.btns}>
                             <Button title="Go back" theme="yellow-secondary" size="large" onClick={() => navigate(-1)} />
-                            <Button title="Go home" theme="yellow" size="large" onClick={() => navigate('/')} />
+                            <Button title="Go home" theme="yellow" size="large" onClick={() => navigate(ROUTES.HOME)} />
                         </div>
                     </div>
                 </div>

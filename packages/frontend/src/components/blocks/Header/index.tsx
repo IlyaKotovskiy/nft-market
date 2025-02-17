@@ -10,7 +10,6 @@ import { useState } from 'react';
 import { EIP6963ProviderDetail } from '@/types/web3.providers';
 import { useSyncProviders } from '@/hooks/useSyncProviders';
 import { formatAddress } from '@/utils';
-import { Link }from "@/router"; 
 
 export const Header: React.FC = (): React.JSX.Element => {
     const [selectedWallet, setSelectedWallet] = useState<EIP6963ProviderDetail>();
