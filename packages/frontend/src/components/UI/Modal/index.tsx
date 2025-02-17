@@ -1,10 +1,10 @@
 import s from './Modal.module.scss';
-import { memo, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IModalProps } from '@/types/modal';
 
-export const Modal: React.FC<IModalProps> = memo(({ isOpen, onClose, title, children, footer }): React.JSX.Element => {
+export const Modal: React.FC<IModalProps> = ({ isOpen, onClose, title, children, footer }): React.JSX.Element => {
     const [shouldRender, setShouldRender] = useState(isOpen);
     const body = document.body;    
 
@@ -52,4 +52,4 @@ export const Modal: React.FC<IModalProps> = memo(({ isOpen, onClose, title, chil
         </AnimatePresence>,
         body
     );
-});
+};

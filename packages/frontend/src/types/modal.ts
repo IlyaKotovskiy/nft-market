@@ -5,3 +5,9 @@ export interface IModalProps {
     children: React.ReactNode;
     footer?: React.ReactNode;
 }
+
+export interface IUseModal {
+    isOpen: boolean;
+    openModal: () => void;
+    closeModal: () => void;
+}

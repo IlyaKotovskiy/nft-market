@@ -1,10 +1,11 @@
-import { useState } from "react"
+import { IUseModal } from "@/types/modal";
+import { useCallback, useState } from "react"
 
-export const useModal = () => {
-    const [isOpen, setIsOpen] = useState(false);
+export const useModal = (): IUseModal => {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const openModal = () => setIsOpen(true);
-    const closeModal = () => setIsOpen(false);
+    const openModal = useCallback(() => setIsOpen(true), []);
+    const closeModal = useCallback(() => setIsOpen(false), []);
 
     return { isOpen, openModal, closeModal };
 }

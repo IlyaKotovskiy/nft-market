@@ -4,16 +4,11 @@ import { Logo } from '@/components/Logo';
 import { Button } from '@/components/UI/Button';
 import { Container } from '@/components/Container';
 import { Modal } from '@/components/UI/Modal';
+import { navRoutes } from '@/constants/header';
 import { useModal } from '@/hooks/useModal';
 
 export const Header: React.FC = (): React.JSX.Element => {
     const { isOpen, openModal, closeModal } = useModal();
-
-    const navRoutes = {
-        stats: '/stats',
-        resources: '/resources',
-        create: '/create'
-    }
 
     return (
         <header>
