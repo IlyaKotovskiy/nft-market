@@ -40,7 +40,7 @@ export const Modal: React.FC<IModalProps> = ({ isOpen, onClose, title, children,
                         onClick={(e) => e.stopPropagation()}
                     >
                         {title && <h2 className={s.title}>{title}</h2>}
-                        <div className={s.content}>{children}</div>
+                        {children}
                         {footer && <div className={s.footer}>{footer}</div>}
                         <button className={s.closeBtn} onClick={onClose}>
                             <span></span>

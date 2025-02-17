@@ -71,3 +71,39 @@ nav {
         }
     }
 }
+
+.modalBorder {
+    margin: 14px 0 30px;
+    border: 1px solid var(--color-gray-dark);
+    outline: none;
+}
+
+.providers {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.provider {
+    color: var(--color-white);
+    background-color: var(--color-blue-gray);
+    border: 2px solid var(--color-gray-dark);
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px;
+
+    font-size: 16px;
+    transition: background-color var(--transition);
+
+    img {
+        width: 32px;
+        height: 32px;
+    }
+
+    &:hover {
+        background-color: var(--color-gray-dark);
+    }
+}
