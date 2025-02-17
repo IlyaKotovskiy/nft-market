@@ -2,3 +2,6 @@
     command="yarn build"
     publish="dist"
     base="packages/frontend"
+
+[build.environment]
+    NODE_VERSION = "20"
