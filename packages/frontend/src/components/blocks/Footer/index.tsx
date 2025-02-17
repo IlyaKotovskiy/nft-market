@@ -5,8 +5,9 @@ import { Button } from '@/components/UI/Button';
 import { footRoutes } from '@/constants/footer';
 import FormIcon from '@/icons/footer/email.svg?react';
 import { MediaLinks } from '@/components/MediaLinks';
+import { memo } from 'react';
 
-export const Footer: React.FC = (): React.JSX.Element => {
+export const Footer: React.FC = memo((): React.JSX.Element => {
     return (
         <footer>
             <Container>
@@ -55,4 +56,4 @@ export const Footer: React.FC = (): React.JSX.Element => {
             </Container>
         </footer>
     )
-};
+});
