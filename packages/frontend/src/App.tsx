@@ -1,10 +1,13 @@
+import { BrowserRouter as Router } from '@/router'
+import { AppRoutes } from '@/router/routes'
 import { Layout } from './components/Layout'
-import { AppRouter } from '@/router/router'
 
 export const App: React.FC = (): React.JSX.Element => {
   return (
-    <Layout>
-      <AppRouter />
-    </Layout>
+    <Router>
+      <Layout>
+        <AppRoutes />
+      </Layout>
+    </Router>
   )
 }
