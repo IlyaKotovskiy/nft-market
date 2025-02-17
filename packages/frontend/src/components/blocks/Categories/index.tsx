@@ -7,7 +7,7 @@ export const Categories: React.FC = (): React.JSX.Element => {
     return (
         <section className={s.section}>
             <Container>
-                <h2 className={s.title}>Browse <span>by category</span></h2>
+                <h2 className="section-title">Browse <span>by category</span></h2>
                 <Slider>
                     {MOCK_CATEGORIES_DATA.map(({ id, title, pathToImg }) => (
                         <div key={id} className={s.categoryItem}>

@@ -8,7 +8,7 @@ export const Drops: React.FC = (): React.JSX.Element => {
     return (
         <section className={s.section}>
             <Container>
-                <h2 className={s.title}>Notable <span>drops</span></h2>
+                <h2 className="section-title">Notable <span>drops</span></h2>
                 <Slider>
                     {MOCK_DROPS_DATA.map(drop => (
                         <div key={drop.id} className={s.drop}>
