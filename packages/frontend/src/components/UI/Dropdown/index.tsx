@@ -11,7 +11,7 @@ export const Dropdown: React.FC = (): React.JSX.Element => {
     const [isOpen, toggleDropdown] = useToggle(false);
     const dropdownRef = useRef(null);
 
-    useClickOutside(dropdownRef, () => toggleDropdown());
+    useClickOutside(dropdownRef, () => toggleDropdown(), isOpen);
 
     return (
         <div className={s.dropdownWrapper} ref={dropdownRef}>
