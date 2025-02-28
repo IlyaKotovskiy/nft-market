@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { EIP6963ProviderDetail } from '@/types/web3.providers';
 import { useSyncProviders } from '@/hooks/useSyncProviders';
 import { formatAddress } from '@/utils';
+import { Dropdown } from '@/components/UI/Dropdown';
 
 export const Header: React.FC = (): React.JSX.Element => {
     const [selectedWallet, setSelectedWallet] = useState<EIP6963ProviderDetail>();
@@ -36,7 +37,7 @@ export const Header: React.FC = (): React.JSX.Element => {
             <Container>
                 <div className={s.wrapper}>
                     <Logo />
-                    <Button title="Explore" theme="yellow" size="small" type="headerBtn" />
+                    <Dropdown />
                     <form className={s.form}>
                         <input type="text" name="search" placeholder="Search" autoComplete="off" />
                         <button type="submit">
