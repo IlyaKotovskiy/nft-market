@@ -1,7 +1,7 @@
 import s from './NotFoundPage.module.scss';
 import { Container } from '@/components/Container';
 import { Button } from '@/components/UI/Button';
-import { useNavigate } from "@/router";
+import { useNavigate } from "react-router-dom";
 import { ROUTES } from '@/constants/routes';
 import NotFoundIcon from "@/icons/404.svg?react";
 
