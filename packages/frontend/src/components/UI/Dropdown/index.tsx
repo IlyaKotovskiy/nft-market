@@ -1,20 +1,17 @@
 import s from './Dropdown.module.scss';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from '../Button';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import { MOCK_CATEGORIES_DROPDOWN } from '@/mocks/categoriesData';
+import { useToggle } from '@/hooks/useToggle';
 
 
 export const Dropdown: React.FC = (): React.JSX.Element => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, toggleDropdown] = useToggle(false);
     const dropdownRef = useRef(null);
 
-    const toggleDropdown = () => {
-        setIsOpen(prev => !prev);
-    }
-
-    useClickOutside(dropdownRef, () => setIsOpen(false));
+    useClickOutside(dropdownRef, () => toggleDropdown());
 
     return (
         <div className={s.dropdownWrapper} ref={dropdownRef}>
