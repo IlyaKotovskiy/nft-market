@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon server.ts",
-    "build": "yarn&& tsc && cp .env dist/.env"
+    "build": "yarn&& tsc"
   },
   "dependencies": {
     "cors": "^2.8.5",

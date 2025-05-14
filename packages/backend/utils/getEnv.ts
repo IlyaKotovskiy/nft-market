@@ -1,18 +1,15 @@
-import path from "path";
-import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const envPath = path.resolve(__dirname, '../.env');
+import path from "path";
 
 export const loadEnv = (): void => {
-    const result = dotenv.config({ path: envPath });
+    if (process.env.NODE_ENV !== "production") {
+        const envPath = path.resolve(process.cwd(), ".env");
+        const result = dotenv.config({ path: envPath });
 
-    if (result.error) {
-        console.error('Failed to load .env:', result.error);
-        throw result.error;
+        if (result.error) {
+            console.error("Failed to load .env:", result.error);
+            throw result.error;
+        }
     }
 };
 loadEnv();
