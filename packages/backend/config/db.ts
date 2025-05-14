@@ -3,10 +3,10 @@ import { Sequelize, SequelizeOptions } from "sequelize-typescript";
 import { userModel } from "../models/User.model.js";
 import { nftModel } from '../models/NFT.model.js';
 
-const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT } = process.env;
+const { POSTGRES_HOST, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT } = process.env;
 
 const sequelizeOptions: SequelizeOptions = {
-    host: 'localhost',
+    host: POSTGRES_HOST,
     port: Number(POSTGRES_PORT),
     username: POSTGRES_USER,
     password: POSTGRES_PASSWORD,
