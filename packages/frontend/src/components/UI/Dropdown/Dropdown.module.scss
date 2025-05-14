@@ -4,36 +4,10 @@
 }
 
 .dropdownMenu {
+    background: #464A59;
     position: absolute;
     top: calc(100% + 15px);
-    right: -45px;
-    background: #2c2f36;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    min-width: 180px;
     z-index: 10;
-}
-
-.dropdownItem {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 10px 16px;
-    cursor: pointer;
-    transition: background-color var(--transition);
-    color: var(--color-white);
-
-    &:hover {
-        background-color: #3a3d46;
-    }
-
-    &:not(&:last-child) {
-        border-bottom: 1px solid #1f2435;
-    }
-}
-
-.icon {
-    width: 20px;
-    height: 20px;
 }

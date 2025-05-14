@@ -1,0 +1,28 @@
+@mixin dropdownItem {
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background-color var(--transition);
+    color: var(--color-white);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+
+    svg {
+        width: 20px;
+        height: 20px;
+
+        path {
+            fill: rgb(132, 138, 156);
+        }
+    }
+
+    &:hover {
+        background-color: #3a3d46;
+    }
+
+    &:not(&:last-child) {
+        border-bottom: 1px solid rgb(28, 28, 28);
+    }
+}

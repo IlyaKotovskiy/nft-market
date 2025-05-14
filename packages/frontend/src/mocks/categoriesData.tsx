@@ -8,7 +8,6 @@ import Photography from "@/icons/headerDropdown/photo.svg?react";
 import Sports from "@/icons/headerDropdown/sports.svg?react";
 import TradingCards from "@/icons/headerDropdown/cards.svg?react";
 import Utility from "@/icons/headerDropdown/utility.svg?react";
-import VirtualWorlds from "@/icons/headerDropdown/worlds.svg?react";
 
 export const MOCK_CATEGORIES_DATA = [
     { id: 1, title: "Art", pathToImg: "/categories/art.png" },
@@ -19,15 +18,14 @@ export const MOCK_CATEGORIES_DATA = [
 ]
 
 export const MOCK_CATEGORIES_DROPDOWN = [
-    { id: 1, name: "All NFTs", icon: AllNFTs },
-    { id: 2, name: "Solana NFTs", icon: SolanaNFTs },
-    { id: 3, name: "Art", icon: Art },
-    { id: 4, name: "Collectibles", icon: Collectibles },
-    { id: 5, name: "Domain Names", icon: DomainNames },
-    { id: 6, name: "Music", icon: Music },
-    { id: 7, name: "Photography", icon: Photography },
-    { id: 8, name: "Sports", icon: Sports },
-    { id: 9, name: "Trading Cards", icon: TradingCards },
-    { id: 10, name: "Utility", icon: Utility },
-    { id: 11, name: "Virtual Worlds", icon: VirtualWorlds },
+    { id: 1, name: "All NFTs", icon: AllNFTs, path: '/collections/all' },
+    { id: 2, name: "Solana NFTs", icon: SolanaNFTs, path: '/collections/solana-nfts' },
+    { id: 3, name: "Art", icon: Art, path: '/collections/art' },
+    { id: 4, name: "Collectibles", icon: Collectibles, path: '/collections/collectibles' },
+    { id: 5, name: "Domain Names", icon: DomainNames, path: '/collections/domain' },
+    { id: 6, name: "Music", icon: Music, path: '/collections/music' },
+    { id: 7, name: "Photography", icon: Photography, path: '/collections/photo' },
+    { id: 8, name: "Sports", icon: Sports, path: '/collections/sports' },
+    { id: 9, name: "Trading Cards", icon: TradingCards, path: '/collections/trading' },
+    { id: 10, name: "Utility", icon: Utility, path: '/collections/utils' },
 ];

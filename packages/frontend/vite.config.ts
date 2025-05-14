@@ -22,6 +22,14 @@ export default defineConfig({
       '@/types': path.resolve(__dirname, './src/types'),
       '@/icons': path.resolve(__dirname, './src/icons'),
       '@/mocks': path.resolve(__dirname, './src/mocks'),
+      '@/mixins': path.resolve(__dirname, './src/mixins'),
+    }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "@/mixins" as *;`
+      }
     }
   }
 })

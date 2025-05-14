@@ -4,7 +4,7 @@ import { IButton, TTypeButton } from '@/types/button';
 import ExploreIcon from '@/icons/explore_icon.svg?react';
 import ConnectIcon from '@/icons/connect_wallet_icon.svg?react';
 
-export const Button: React.FC<IButton> = memo(({ title, theme, size, type, ...otherProps }): React.JSX.Element => {
+export const Button: React.FC<IButton> = memo(({ title, theme, size, btnType, type = "button", ...otherProps }): React.JSX.Element => {
     const iconMap: Record<TTypeButton, React.JSX.Element> = {
         headerBtn: <ExploreIcon />,
         connectBtn: <ConnectIcon />
@@ -12,11 +12,11 @@ export const Button: React.FC<IButton> = memo(({ title, theme, size, type, ...ot
 
     return (
         <button
-            type="button"
+            type={type}
             {...otherProps}
-            className={`${s.btn} ${s[theme]} ${s[size]} ${type && s[type]}`}
+            className={`${s.btn} ${s[theme]} ${s[size]} ${btnType ? s[btnType] : ''}`}
         >
-            {type && iconMap[type]}
+            {btnType && iconMap[btnType]}
             {title}
         </button>
     )

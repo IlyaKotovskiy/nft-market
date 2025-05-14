@@ -6,6 +6,7 @@ export interface IButton {
     title: string
     theme: TThemeButton
     size: TSizeButton
-    type?: TTypeButton
+    type?: "button" | "reset" | "submit";
+    btnType?: TTypeButton
     onClick?: () => void
 }

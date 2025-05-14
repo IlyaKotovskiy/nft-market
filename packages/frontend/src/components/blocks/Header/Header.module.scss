@@ -1,5 +1,8 @@
+@use "@/mixins" as mixins;
+
 header {
     padding: 30px 0;
+    margin-bottom: 50px;
 }
 
 .wrapper {
@@ -65,6 +68,7 @@ nav {
 
         &:hover {
             color: var(--color-white);
+
             &::before {
                 transform: scaleX(1);
             }
@@ -106,4 +110,33 @@ nav {
     &:hover {
         background-color: var(--color-gray-dark);
     }
+}
+
+.dropdownItemExplore {
+    @include mixins.dropdownItem;
+}
+
+.dropdownMenuExplore {
+    left: 0;
+    min-width: 200px;
+}
+
+.dropdownWrapperWallet {
+    margin-left: auto;
+}
+
+.dropdawnMenuWallet {
+    right: 0;
+    min-width: 200px;
+}
+
+.dropdownItemWallet {
+    @include mixins.dropdownItem;
+}
+
+.modalDisconnectWrap {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }

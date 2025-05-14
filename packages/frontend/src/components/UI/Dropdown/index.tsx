@@ -1,39 +1,66 @@
 import s from './Dropdown.module.scss';
-import { useRef } from 'react';
+import { Children, cloneElement, isValidElement, ReactNode, useRef } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
-import { Button } from '../Button';
 import { useClickOutside } from '@/hooks/useClickOutside';
-import { MOCK_CATEGORIES_DROPDOWN } from '@/mocks/categoriesData';
 import { useToggle } from '@/hooks/useToggle';
 
+export interface IDropdownProps {
+    trigger: ReactNode | ((isOpen: boolean) => ReactNode);
+    children: ReactNode;
+    wrapperClassName?: string;
+    menuClassName?: string;
+    closeOnItemClick?: boolean | ((itemId: string) => boolean);
+}
 
-export const Dropdown: React.FC = (): React.JSX.Element => {
+export const Dropdown: React.FC<IDropdownProps> = ({
+    trigger,
+    children,
+    wrapperClassName = '',
+    menuClassName = '',
+    closeOnItemClick = true,
+}): React.JSX.Element => {
     const [isOpen, toggleDropdown] = useToggle(false);
     const dropdownRef = useRef(null);
 
     useClickOutside(dropdownRef, () => toggleDropdown(), isOpen);
 
+    const handleChildClick = (e: React.MouseEvent, childOnClick?: () => void) => {
+        childOnClick?.();
+
+        if (closeOnItemClick) {
+            toggleDropdown()
+        }
+    };
+
+    const enhancedChildren = Children.map(children, (child) => {
+        if (!isValidElement(child)) return child;
+
+        return cloneElement(child, {
+            onClick: (e: React.MouseEvent) => {
+                handleChildClick(e, child.props.onClick);
+            },
+        });
+    });
+
     return (
-        <div className={s.dropdownWrapper} ref={dropdownRef}>
-            <Button title="Explore" theme="yellow" size="small" type="headerBtn" onClick={toggleDropdown} />
-            
+        <div className={`${s.dropdownWrapper} ${wrapperClassName}`} ref={dropdownRef}>
+            {typeof trigger === 'function'
+                ? (trigger(isOpen))
+                : (<div onClick={toggleDropdown}>{trigger}</div>)
+            }
+
             <AnimatePresence mode="wait">
-                { isOpen && (
-                    <motion.ul
-                        className={s.dropdownMenu}
+                {isOpen && (
+                    <motion.div
+                        className={`${s.dropdownMenu} ${menuClassName}`}
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2, ease: "easeInOut" }}
                     >
-                        {MOCK_CATEGORIES_DROPDOWN.map(category => (
-                            <li key={category.id} className={s.dropdownItem}>
-                                <category.icon className={s.icon} />
-                                {category.name}
-                            </li>
-                        ))}
-                    </motion.ul>
-                ) }
+                        {enhancedChildren}
+                    </motion.div>
+                )}
             </AnimatePresence>
         </div>
     )
