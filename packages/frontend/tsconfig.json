@@ -1,15 +1,11 @@
 {
-  // "files": [],
-  // "references": [
-  //   { "path": "./tsconfig.app.json" },
-  //   { "path": "./tsconfig.node.json" },
-  // ],
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   },
   "compilerOptions": {
     "jsx": "react-jsx",
     "target": "ES2020",
+    "module": "ESNext",
     "moduleResolution": "bundler",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

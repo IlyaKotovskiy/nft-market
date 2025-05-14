@@ -6,15 +6,13 @@ import router from "./routes/index.js";
 
 dbConnect();
 
-const { SERVER_PORT } = process.env;
-
 const app = express();
-const PORT = SERVER_PORT || 3001;
+const PORT = process.env.SERVER_PORT || 3001;
 
 // credentials: true - для авторизации через куки
-
 app.use(cors({
-    origin: 'https://openlake-nft.netlify.app',
+    origin: [String(process.env.VITE_FRONTEND), 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     // credentials: true
 }));
 app.use(express.json());
