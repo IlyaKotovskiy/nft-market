@@ -3,13 +3,15 @@ import * as Tabs from '@radix-ui/react-tabs';
 import { Container } from '@/components/Container';
 import { MOCK_CATEGORIES_DROPDOWN } from '@/mocks/categoriesData';
 import { useNavigate, useParams } from 'react-router-dom';
-import { MOCK_COLLECTIONS } from '@/mocks/nftData';
 import { CollectionCard } from '@/components/CollectionCard';
+import { observer } from 'mobx-react';
+import { useEffect } from 'react';
+import { nftStore } from '@/stores/nftStore';
 
-export const CollectionPage: React.FC = (): React.JSX.Element => {
+export const CollectionPage: React.FC = observer((): React.JSX.Element => {
     const { category = 'all' } = useParams();
+    const { nfts: collections } = nftStore;
     const navigate = useNavigate();
-    const collections = MOCK_COLLECTIONS;
     const activeTab = MOCK_CATEGORIES_DROPDOWN.find(c => c.path === `/collections/${category}`) || MOCK_CATEGORIES_DROPDOWN[0];
 
     const filteredCollections = category === 'all' ? collections : collections.filter(c => c.category === category);
@@ -19,10 +21,14 @@ export const CollectionPage: React.FC = (): React.JSX.Element => {
         if (tab) navigate(tab.path);
     }
 
+    useEffect(() => {
+        nftStore.fetchNfts();
+    }, []);
+
     return (
         <section className={s.section}>
             <Container>
-                <h1>Explore collections</h1>
+                <h1>Explore NFTs</h1>
                 <Tabs.Root
                     value={category}
                     onValueChange={handleTabChange}
@@ -47,4 +53,4 @@ export const CollectionPage: React.FC = (): React.JSX.Element => {
             </Container>
         </section>
     )
-};
+});

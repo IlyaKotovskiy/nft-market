@@ -18,7 +18,7 @@ type NFTCollection = {
     name: string;
     description: string;
     category: string;
-    logo: string;
+    image: string;
     banner: string;
     nfts: NFT[];
     createdAt: Date;
@@ -31,10 +31,9 @@ interface ICollectionCardProps {
 export const CollectionCard: React.FC<ICollectionCardProps> = ({ collection }): React.JSX.Element => {
     return (
         <div className={s.card}>
-            <img src={collection.logo} alt={collection.name} className={s.banner} />
-            {/* <img src={collection.logo} alt='' /> */}
+            <img src={collection.image} alt={collection.name} className={s.banner} />
             <div className={s.descr}>
-                <p>{collection.name}</p>
+                <p>NFT name: {collection.name}</p>
             </div>
         </div>
     )

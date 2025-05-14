@@ -5,6 +5,7 @@ import { Layout } from './components/Layout'
 import { Slide, ToastContainer, ToastContainerProps } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { usersStore } from "./stores/usersStore";
+import { nftStore } from "./stores/nftStore";
 
 const toastOptions: ToastContainerProps = {
   position: "top-center",
@@ -21,6 +22,7 @@ const toastOptions: ToastContainerProps = {
 
 const stores = {
   usersStore,
+  nftStore
 }
 
 export const App: React.FC = (): React.JSX.Element => {
