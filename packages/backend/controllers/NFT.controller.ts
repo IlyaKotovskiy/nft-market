@@ -30,12 +30,21 @@ export const createNft = asyncHandler(async (req, res) => {
         return res.status(404).json({ error: "User not found" });
     };
 
-    // Экранизация имен файлов
-    const ext = path.extname(file.filename);
-    const baseName = path.basename(file.originalname, ext);
-    const safeFileName = encodeURIComponent(baseName) + ext;
+    if (!file.originalname) {
+        return res.status(400).json({
+            error: "Uploaded file is missing original name."
+        });
+    }
 
-    const fileKey = `uploads/${Date.now()}_${safeFileName}`;
+    // Экранизация имен файлов
+    const ext = path.extname(file.originalname);
+    const baseName = path.basename(file.originalname, ext);
+    const safeFileName = baseName
+        .toLowerCase()
+        .replace(/[^a-z0-9_-]/gi, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    const fileKey = `uploads/${Date.now()}_${safeFileName}${ext}`;
 
     // Запись в бд с ссылкой на медиа
     const createdNft = await NFT.create({
