@@ -3,6 +3,7 @@ import { Upload } from "@aws-sdk/lib-storage";
 import { s3 } from "../config/aws.js";
 import { NFT, User } from "../config/db.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import path from "path";
 
 export const getNfts = asyncHandler(async (_, res) => {
     const nfts = await NFT.findAll();
@@ -28,14 +29,20 @@ export const createNft = asyncHandler(async (req, res) => {
     if (!user) {
         return res.status(404).json({ error: "User not found" });
     };
-    const fileKey = `uploads/${Date.now()}_${file.originalname}`;
+
+    // Экранизация имен файлов
+    const ext = path.extname(file.filename);
+    const baseName = path.basename(file.originalname, ext);
+    const safeFileName = encodeURIComponent(baseName) + ext;
+
+    const fileKey = `uploads/${Date.now()}_${safeFileName}`;
 
     // Запись в бд с ссылкой на медиа
     const createdNft = await NFT.create({
         name,
         category,
         collection,
-        image: `${process.env.PUBLIC_STORAGE_URL!}/${fileKey}`,
+        image: `${process.env.PUBLIC_STORAGE_URL}/${fileKey}`,
         description,
         royaltyPercentage,
         ownerId
