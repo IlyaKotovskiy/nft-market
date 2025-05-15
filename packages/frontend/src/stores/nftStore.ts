@@ -4,6 +4,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 class NFTStore {
     nfts = [];
+    isLoading = true;
 
     constructor() {
         makeAutoObservable(this);
@@ -13,6 +14,7 @@ class NFTStore {
         const nfts = await getNfts();
         runInAction(() => {
             this.nfts = nfts;
+            this.isLoading = false;
         });
     }
 

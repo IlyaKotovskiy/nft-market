@@ -7,6 +7,7 @@ import { CollectionCard } from '@/components/CollectionCard';
 import { observer } from 'mobx-react';
 import { useEffect } from 'react';
 import { nftStore } from '@/stores/nftStore';
+import SkeletonCollectionCard from './SkeletonCollectionCard';
 
 export const CollectionPage: React.FC = observer((): React.JSX.Element => {
     const { category = 'all' } = useParams();
@@ -45,9 +46,11 @@ export const CollectionPage: React.FC = observer((): React.JSX.Element => {
                         ))}
                     </Tabs.List>
                     <Tabs.Content value={category} className={s.categoriesContainer}>
-                        {filteredCollections.map(collection => (
-                            <CollectionCard key={collection.id} collection={collection} />
-                        ))}
+                        {nftStore.isLoading
+                            ? Array.from({ length: 20 }).map((_, i) => <SkeletonCollectionCard key={i} />)
+                            : filteredCollections.map(collection => (
+                                <CollectionCard key={collection.id} collection={collection} />
+                            ))}
                     </Tabs.Content>
                 </Tabs.Root>
             </Container>
