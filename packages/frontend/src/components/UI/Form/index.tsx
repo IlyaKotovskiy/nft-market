@@ -1,5 +1,5 @@
-import { Button } from '../Button';
 import s from './Form.module.scss';
+import { Button } from '../Button';
 import { FieldError, FieldValues, RegisterOptions, useForm } from 'react-hook-form';
 
 type TField = {

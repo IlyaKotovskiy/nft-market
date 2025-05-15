@@ -14,21 +14,22 @@ import { Dropdown } from '@/components/UI/Dropdown';
 import { authUser } from '@/api/authUser';
 import { MOCK_CATEGORIES_DROPDOWN } from '@/mocks/categoriesData';
 import { Link } from 'react-router-dom';
-import { getUser } from '@/api/getUsers';
 import { FaRegUserCircle } from "react-icons/fa";
 import { TbDeviceIpadMinus } from "react-icons/tb";
 import { VscDebugDisconnect } from "react-icons/vsc";
+import { RiNftFill } from "react-icons/ri";
 import ConnectIcon from '@/icons/connect_wallet_icon.svg?react';
 import { toast } from 'react-toastify';
 import { Form } from '@/components/UI/Form';
 import { updateUser } from '@/api/updateUser';
+import { usersStore } from '@/stores/usersStore';
+import { observer } from 'mobx-react';
 
-export const Header: React.FC = (): React.JSX.Element => {
+export const Header: React.FC = observer((): React.JSX.Element => {
     const storageWallet = localStorage.getItem('wallet_address');
+    const { curUser, curUserWallet, setUserWallet, updateCurUserFields } = usersStore;
 
     const [selectedWallet, setSelectedWallet] = useState<EIP6963ProviderDetail>();
-    const [user, setUser] = useState({});
-    const [userWallet, setUserWallet] = useState<string>("");
     const providers = useSyncProviders();
     const { isOpen, openModal, closeModal } = useModal();
     const [modalType, setModalType] = useState<string>("");
@@ -78,10 +79,6 @@ export const Header: React.FC = (): React.JSX.Element => {
 
     const handleDisconnectWalet = () => {
         setUserWallet("");
-        setUser(prev => ({
-            ...prev,
-            wallet_address: ""
-        }));
         setSelectedWallet(null);
 
         localStorage.removeItem('wallet_address');
@@ -92,11 +89,8 @@ export const Header: React.FC = (): React.JSX.Element => {
 
     const handleCopyWalletAddress = async () => {
         try {
-            await navigator.clipboard.writeText(userWallet);
+            await navigator.clipboard.writeText(curUserWallet);
             toast.success('Wallet address copied!');
-            // toast.warn('Wallet address copied!');
-            // toast.info('Wallet address copied!');
-            // toast.error('Wallet address copied!');
         } catch (error) {
             console.error('Failed to copy wallet address:', error);
         }
@@ -104,8 +98,7 @@ export const Header: React.FC = (): React.JSX.Element => {
 
     const fetchUserData = async (wallet_address: string) => {
         try {
-            const userData = await getUser(wallet_address);
-            setUser(userData);
+            await usersStore.fetchCurUser(wallet_address);
         } catch (error) {
             console.error('Failed to fetch user:', error);
         }
@@ -113,17 +106,12 @@ export const Header: React.FC = (): React.JSX.Element => {
 
     const handleButtonClick = (type: string) => {
         setModalType(type);
-        if (type !== 'wallet' || !userWallet) openModal();
+        if (type !== 'wallet' || !curUserWallet) openModal();
     };
 
-    const onSubmit = async (data) => {
-        console.log(data);
-        await toast.promise(updateUser(user.id, data.username, data.email), { pending: "Данные отправляются", success: "Данные пользователя изменены!", error: "Что-то пошло не так" });
-        setUser(prev => ({
-            ...prev,
-            username: data.username,
-            email: data.email
-        }));
+    const onSubmit = async (data: { email?: string, username?: string }) => {
+        await toast.promise(updateUser(curUser.id, data.username, data.email), { pending: "Данные отправляются", success: "Данные пользователя изменены!", error: "Что-то пошло не так" });
+        updateCurUserFields(data);
     }
 
     useEffect(() => {
@@ -161,11 +149,11 @@ export const Header: React.FC = (): React.JSX.Element => {
                         ))}
                     </nav>
                     <Dropdown
-                        trigger={<Button title={userWallet ? formatAddress(userWallet) : "Connect"} theme="dark" size="small" btnType="connectBtn" onClick={() => handleButtonClick('wallet')} />}
+                        trigger={<Button title={curUserWallet ? formatAddress(curUserWallet) : "Connect"} theme="dark" size="small" btnType="connectBtn" onClick={() => handleButtonClick('wallet')} />}
                         wrapperClassName={s.dropdownWrapperWallet}
                         menuClassName={s.dropdawnMenuWallet}
                     >
-                        {userWallet &&
+                        {curUserWallet &&
                             <div className={s.walletDropdawn}>
                                 <div className={s.dropdownItemWallet} onClick={handleCopyWalletAddress}>
                                     <ConnectIcon />
@@ -175,7 +163,11 @@ export const Header: React.FC = (): React.JSX.Element => {
                                     <FaRegUserCircle />
                                     Profile
                                 </div>
-                                {user.role === 'admin' && <Link to={'/admin'} className={s.dropdownItemWallet}>
+                                {curUser?.role === 'admin' && <Link to={'/create-nft'} className={s.dropdownItemWallet}>
+                                    <RiNftFill />
+                                    Create NFT
+                                </Link>}
+                                {curUser?.role === 'admin' && <Link to={'/admin'} className={s.dropdownItemWallet}>
                                     <TbDeviceIpadMinus />
                                     Admin page
                                 </Link>}
@@ -209,29 +201,29 @@ export const Header: React.FC = (): React.JSX.Element => {
                                 </div>
                             )
                             : modalType === 'username'
-                                ? (
-                                    <Form
-                                        labelTheme='var(--color-navy-medium)'
-                                        fields={formFields}
-                                        btnText='Change'
-                                        btnType='submit'
-                                        onSubmit={onSubmit}
-                                        defaultValues={{ username: user.username, email: user.email }}
-                                    />
-                                )
-                                : modalType === 'disconnect'
-                                    ? (<div>
-                                        <p className={s.modalDescription}>Are you sure you want to log out of your wallet?</p>
-                                        <div className={s.modalDisconnectWrap}>
-                                            <Button title='Yes, get out' theme='yellow' size='small' onClick={handleDisconnectWalet} />
-                                            <Button title='No, stay' theme='dark-secondary' size='small' onClick={closeModal} />
-                                        </div>
-                                    </div>)
-                                    : (<div>huy</div>)
+                            ? (
+                                <Form
+                                    labelTheme='var(--color-navy-medium)'
+                                    fields={formFields}
+                                    btnText='Change'
+                                    btnType='submit'
+                                    onSubmit={onSubmit}
+                                    defaultValues={{ username: curUser?.username, email: curUser?.email }}
+                                />
+                            )
+                            : modalType === 'disconnect'
+                            && (<div>
+                                <p className={s.modalDescription}>Are you sure you want to log out of your wallet?</p>
+                                <div className={s.modalDisconnectWrap}>
+                                    <Button title='Yes, get out' theme='yellow' size='small' onClick={handleDisconnectWalet} />
+                                    <Button title='No, stay' theme='dark-secondary' size='small' onClick={closeModal} />
+                                </div>
+                            </div>
+                            )
                         }
                     </Modal>
                 </div>
             </Container>
         </header>
     )
-}
+});

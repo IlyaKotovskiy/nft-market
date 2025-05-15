@@ -1,5 +1,6 @@
 import { getUser, getUsers } from "@/api/getUsers";
-import { action, makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
+import { nftStore } from "./nftStore";
 
 class UsersStore {
     users = [];
@@ -7,47 +8,61 @@ class UsersStore {
     isLoading = true;
 
     constructor() {
-        makeAutoObservable(this, {
-            fetchUsers: action,
-            fetchCurUser: action
-        });
+        makeAutoObservable(this);
     }
 
-    // usersStore.ts
     fetchCurUser = async (walletAddress: string) => {
-        this.isLoading = true;
-
-        // Искусственная задержка 2 секунды
-        await new Promise(resolve => setTimeout(resolve, 2000));
-
-        try {
-            const response = await getUser(walletAddress);
-            runInAction(() => {
-                this.curUser = response;
-            });
-        } finally {
-            runInAction(() => {
-                this.isLoading = false;
-            });
-        }
+        this.isLoading = false;
+        const user = await getUser(walletAddress);
+        runInAction(() => {
+            this.curUser = user;
+            this.isLoading = false;
+        });
     };
 
     fetchUsers = async () => {
-        this.isLoading = true;
+        this.isLoading = false;
+        const users = await getUsers();
+        runInAction(() => {
+            this.users = users;
+            this.isLoading = false;
+        });
+    };
 
-        // Задержка 1.5 секунды
-        await new Promise(resolve => setTimeout(resolve, 1500));
+    setUserWallet = (wallet_address) => {
+        runInAction(() => {
+            if (this.curUser) {
+                this.curUser.wallet_address = wallet_address;
+            };
+        });
+    };
 
-        try {
-            const response = await getUsers();
-            runInAction(() => {
-                this.users = response;
-            });
-        } finally {
-            runInAction(() => {
-                this.isLoading = false;
-            });
-        }
+    updateCurUserFields = (data: { email?: string, username?: string }) => {
+        runInAction(() => {
+            if (data.email !== undefined) {
+                this.curUser.email = data.email;
+            }
+            if (data.username !== undefined) {
+                this.curUser.username = data.username;
+            }
+        });
+    };
+
+    get collectionsCurUserNFTs() {
+        if (!this.curUser) return [];
+
+        const userNFTs = nftStore.nfts.filter(nft => nft.ownerId === this.curUser.id);
+        const collections = userNFTs.map(nft => nft.collection);
+
+        return Array.from(new Set(collections));
+    }
+
+    get userCount() {
+        return this.users.length;
+    };
+
+    get curUserWallet() {
+        return this.curUser?.wallet_address;
     };
 }
 
