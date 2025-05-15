@@ -28,20 +28,7 @@ export const createNft = asyncHandler(async (req, res) => {
     if (!user) {
         return res.status(404).json({ error: "User not found" });
     };
-
-    // Загрузка медиа в S3
     const fileKey = `uploads/${Date.now()}_${file.originalname}`;
-    const uploadToS3 = new Upload({
-        client: s3,
-        params: {
-            Bucket: process.env.AWS_BUCKET_NAME!,
-            Key: fileKey,
-            Body: file.buffer,
-            ContentType: file.mimetype,
-            ACL: 'public-read',
-        },
-    });
-    const s3Response = await uploadToS3.done();
 
     // Запись в бд с ссылкой на медиа
     const createdNft = await NFT.create({
@@ -53,6 +40,19 @@ export const createNft = asyncHandler(async (req, res) => {
         royaltyPercentage,
         ownerId
     });
+
+    // Загрузка медиа в S3
+    const uploadToS3 = new Upload({
+        client: s3,
+        params: {
+            Bucket: process.env.AWS_BUCKET_NAME!,
+            Key: fileKey,
+            Body: file.buffer,
+            ContentType: file.mimetype,
+            ACL: 'public-read',
+        },
+    });
+    const s3Response = await uploadToS3.done();
 
     return res.status(200).json({ message: "Created NFT!", createdNft });
 });

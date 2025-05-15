@@ -16,6 +16,9 @@
   --color-theme-dark: #050B1C;
 
   --section-margin-bottom: 70px;
+
+  --color-error: red;
+  --color-error-transparent: rgba(255, 0, 4, 0.389);
 }
 
 

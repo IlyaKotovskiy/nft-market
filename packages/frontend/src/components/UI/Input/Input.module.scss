@@ -1,5 +1,5 @@
 .inputWrapper {
-    height: 42px;
+    height: 44px;
     position: relative;
     margin-bottom: 10px;
 
@@ -14,8 +14,8 @@
         font-size: 16px;
 
         &:focus {
-            border-color: rgba(87, 87, 87, 0.564); // Более светлый акцент
-            box-shadow: 0 0 0 3px rgba(87, 87, 87, 0.217); // Тонкая тень
+            border-color: rgba(87, 87, 87, 0.564);
+            box-shadow: 0 0 0 3px rgba(87, 87, 87, 0.217);
         }
 
         &:not(:placeholder-shown)+label,
@@ -23,6 +23,15 @@
             font-size: 14px;
             top: 3px;
             left: 8px;
+        }
+    }
+
+    .error {
+        border-color: var(--color-error);
+
+        &:focus {
+            border-color: var(--color-error);
+            box-shadow: 0 0 0 3px var(--color-error-transparent);
         }
     }
 

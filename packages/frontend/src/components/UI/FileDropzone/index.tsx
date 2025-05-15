@@ -5,9 +5,10 @@ import styles from './FileDropzone.module.scss';
 type FileDropzoneProps = {
     onFileSelect: (file: File) => void;
     selectedFile?: File;
+    error?: string;
 };
 
-export const FileDropzone: React.FC<FileDropzoneProps> = ({ onFileSelect, selectedFile }) => {
+export const FileDropzone: React.FC<FileDropzoneProps> = ({ onFileSelect, selectedFile, error }) => {
     const { getRootProps, getInputProps } = useDropzone({
         accept: { 'image/*': [] },
         maxFiles: 1,
@@ -37,6 +38,7 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({ onFileSelect, select
                     {selectedFile ? 'Файл выбран. Можешь заменить, перетащив новый.' : 'Перетащи файл или кликни, чтобы выбрать изображение'}
                 </p>
             </div>
+            {error && <span className={styles.errorText}>{error}</span>}
         </div>
     );
 };

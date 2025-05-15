@@ -5,7 +5,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     border-radius: 20px;
-    height: 540px;
+    height: 600px;
 }
 
 .form {
@@ -122,4 +122,9 @@
 .btns {
     display: flex;
     gap: 10px;
+}
+
+.globalError {
+    color: red;
+    font-size: 18px;
 }

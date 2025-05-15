@@ -10,9 +10,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, ...rest }, ref) => {
     return (
       <div className={s.inputWrapper}>
-        <input ref={ref} {...rest} placeholder=" " />
+        <input ref={ref} {...rest} placeholder=" " value={rest.value ?? ''} className={error ? s.error : ''} />
         {label && <label>{label}</label>}
-        {error && <span style={{ color: 'red' }}>{error}</span>}
       </div>
     );
   }

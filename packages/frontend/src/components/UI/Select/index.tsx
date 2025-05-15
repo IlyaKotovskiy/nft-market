@@ -12,7 +12,7 @@ type CustomSelectProps = {
     field: ControllerRenderProps<any, any>;
 };
 
-const customStyles: StylesConfig<OptionType> = {
+const getCustomStyles = (error?: string): StylesConfig<OptionType> => ({
     input: (base) => ({
         ...base,
         color: 'var(--color-white)'
@@ -25,19 +25,19 @@ const customStyles: StylesConfig<OptionType> = {
     control: (base, state) => ({
         ...base,
         backgroundColor: 'transparent',
-        border: '2px solid rgba(87, 87, 87, 0.442)',
+        border: `2px solid ${error ? 'var(--color-error)' : 'rgba(87, 87, 87, 0.442)'}`,
         borderRadius: '3px',
         padding: '2px 4px',
         color: '#fff',
         marginBottom: 10,
         boxShadow: state.isFocused
-            ? '0 0 0 3px rgba(87, 87, 87, 0.217)'
+            ? `0 0 0 3px ${error ? 'var(--color-error-transparent)' : 'rgba(87, 87, 87, 0.217)'}`
             : 'none',
         borderColor: state.isFocused
-            ? 'rgba(87, 87, 87, 0.564)'
-            : 'rgba(87, 87, 87, 0.442)',
+            ? (error ? 'var(--color-error)' : 'rgba(87, 87, 87, 0.564)')
+            : (error ? 'var(--color-error)' : 'rgba(87, 87, 87, 0.442)'),
         '&:hover': {
-            borderColor: 'rgba(87, 87, 87, 0.442)', // оставляем тот же цвет при ховере
+            borderColor: error ? 'var(--color-error)' : 'rgba(87, 87, 87, 0.442)',
         },
     }),
     menu: (base) => ({
@@ -57,7 +57,7 @@ const customStyles: StylesConfig<OptionType> = {
         ...base,
         color: '#fff',
     }),
-};
+})
 
 export const CustomSelect: React.FC<CustomSelectProps> = ({ label, error, options, field, placeholder }): React.JSX.Element => {
     return (
@@ -65,14 +65,13 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({ label, error, option
             {label && <label style={{ color: '#fff' }}>{label}</label>}
             <Select
                 placeholder={placeholder ? placeholder : ""}
-                styles={customStyles}
+                styles={getCustomStyles(error)}
                 options={options}
                 value={options.find(opt => opt.value === field.value) || null}
                 onChange={(selected) => field.onChange((selected as OptionType)?.value)}
                 onBlur={field.onBlur}
                 name={field.name}
             />
-            {error && <span style={{ color: 'red' }}>{error}</span>}
         </div>
     );
 };
