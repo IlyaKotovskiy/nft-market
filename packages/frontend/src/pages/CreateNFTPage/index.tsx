@@ -147,10 +147,6 @@ const CreateNFTContent: React.FC = (): React.JSX.Element => {
         }));
     }, [step]);
 
-    useEffect(() => {
-        setValue('collection', '');
-    }, [iHaveCollections]);
-
     return (
         <section>
             <Container>
