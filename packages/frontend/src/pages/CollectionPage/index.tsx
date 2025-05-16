@@ -47,7 +47,7 @@ export const CollectionPage: React.FC = observer((): React.JSX.Element => {
                     </Tabs.List>
                     <Tabs.Content value={category} className={s.categoriesContainer}>
                         {nftStore.isLoading
-                            ? Array.from({ length: 20 }).map((_, i) => <SkeletonCollectionCard key={i} />)
+                            ? Array.from({ length: 16 }).map((_, i) => <SkeletonCollectionCard key={i} />)
                             : filteredCollections.map(collection => (
                                 <CollectionCard key={collection.id} collection={collection} />
                             ))}
